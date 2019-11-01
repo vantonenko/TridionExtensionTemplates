@@ -3,6 +3,9 @@ Visual Studio 2019
 
 Visual Studio 2019 SDK
 
+Tridion Sites 9.5 (9.1*)
+* Tridion assembly references within the project tempaltes must be adjusted accordingly in order to support 9.1 version
+
 # How to build the VSIX installer
 * Choose the Release target
 
