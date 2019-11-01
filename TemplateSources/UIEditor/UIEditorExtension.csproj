@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <UsingTask TaskName="ReplaceFileText" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <InputFilename ParameterType="System.String" Required="true" />
+      <OutputFilename ParameterType="System.String" Required="true" />
+      <MatchText ParameterType="System.String" Required="true" />
+      <ReplacementText ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Reference Include="System.Core" />
+      <Using Namespace="System" />
+      <Using Namespace="System.IO" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[File.WriteAllText(OutputFilename, File.ReadAllText(InputFilename).Replace(MatchText, ReplacementText));]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <UsingTask TaskName="ZipFiles" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <FileList ParameterType="System.String" Required="true" />
+      <OutputArchiveFileName ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Reference Include="System.IO.Compression.FileSystem" />
+      <Reference Include="System.IO.Compression" />
+      <Using Namespace="System" />
+      <Using Namespace="System.IO" />
+      <Using Namespace="System.IO.Compression" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+            using (FileStream archiveFile = File.Create(OutputArchiveFileName))
+            using (var archive = new ZipArchive(archiveFile, ZipArchiveMode.Create))
+            {
+                foreach (string file in FileList.Split(';'))
+                {
+                    var sourceDestintationPair = file.Split('>');
+                    var source = sourceDestintationPair[0];
+                    var destination = sourceDestintationPair.Length > 1 ? sourceDestintationPair[1] : sourceDestintationPair[0];
+                    archive.CreateEntryFromFile(source, destination);
+                }
+            }
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <ReplaceFileText InputFilename="manifest.json" OutputFilename="manifest.json" MatchText="GLOBAL_UNIQUE_ID_PLACEHOLDER" ReplacementText="$(ProjectName)" />
+    <ReplaceFileText InputFilename="manifest.json" OutputFilename="manifest.json" MatchText="EXTENSION_ID_PLACEHOLDER" ReplacementText="$(ProjectName)" />
+    <ZipFiles OutputArchiveFileName="$(ProjectName).zip" FileList="manifest.json;editor.config>Configuration\editor.config" />
+  </Target>
+
+</Project>

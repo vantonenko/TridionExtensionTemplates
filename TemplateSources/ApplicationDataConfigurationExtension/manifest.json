@@ -1,0 +1,18 @@
+{
+  "id": "GLOBAL_UNIQUE_ID_PLACEHOLDER",
+  "name": "<put your package display name here>",
+  "description": "<put your extension package description here>",
+  "author": "<put an author here>",
+  "manifestVersion": "1.0",
+  "minVersion": "0.0.0.0",
+  "version": "9.5",
+  "extensions": [
+    {
+      "name": "EXTENSION_ID_PLACEHOLDER",
+      "type": "CMApplicationDataConfiguration",
+      "properties": {
+        "xmlFileName": "AppDataConfiguration.xml"
+      }
+    }
+  ]
+}

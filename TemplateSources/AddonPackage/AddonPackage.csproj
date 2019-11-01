@@ -1,0 +1,113 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+  </PropertyGroup>
+
+  <UsingTask TaskName="CombineExtensionPackages" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <ProjectName ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Reference Include="System.IO.Compression.FileSystem" />
+      <Reference Include="System.IO.Compression" />
+      <Reference Include="Newtonsoft.Json" />
+      <Using Namespace="System" />
+      <Using Namespace="System.Collections.Generic" />
+      <Using Namespace="System.Linq" />
+      <Using Namespace="System.Text.RegularExpressions" />
+      <Using Namespace="Newtonsoft.Json.Linq" />
+      <Using Namespace="System.IO" />
+      <Using Namespace="System.IO.Compression" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+            const string relativeFolder = @"";
+            const string manifestJson = "manifest.json";
+
+            string currentProjectFile = string.Format("{0}{1}.csproj", relativeFolder, ProjectName);
+
+            using (FileStream combinedArchiveFile = File.Create(string.Format("{0}{1}.zip", relativeFolder, ProjectName)))
+            using (var combinedArchive = new ZipArchive(combinedArchiveFile, ZipArchiveMode.Create))
+            {
+                // collect all the extension zip packages
+                IEnumerable<ZipArchive> archives =
+                    new Regex(@"ProjectReference\sInclude=\""(?<referencedProjectPath>.*?)\""")
+                        .Matches(File.ReadAllText(currentProjectFile))
+                        .OfType<Match>()
+                        .Select(m => m.Groups["referencedProjectPath"].Value)
+                        .Select(path =>
+                            Path.Combine(
+                                relativeFolder,
+                                Path.GetDirectoryName(path) ?? string.Empty,
+                                string.Format("{0}.zip", Path.GetFileNameWithoutExtension(path))))
+                        .Where(File.Exists)
+                        .Select(ZipFile.OpenRead)
+                        .Where(archive => archive.Entries.Any(e => e.Name.ToLower() == manifestJson))
+                        .ToList();
+
+                // copy all the archives contents into a single one (except the manifests files)
+                foreach (ZipArchive sourceArchive in archives)
+                {
+                    foreach (ZipArchiveEntry sourceEntry in sourceArchive.Entries.Where(e => e.Name.ToLower() != manifestJson))
+                    {
+                        ZipArchiveEntry destinationEntry = combinedArchive.CreateEntry(sourceEntry.FullName);
+
+                        using (Stream sourceStream = sourceEntry.Open())
+                        using (Stream destinationStream = destinationEntry.Open())
+                        {
+                            sourceStream.CopyTo(destinationStream);
+                        }
+                    }
+                }
+
+                // read all the manifests files
+                List<string> manifests = archives
+                    .Select(archive => archive.Entries.FirstOrDefault(e => e.Name.ToLower() == manifestJson))
+                    .Where(entry => entry != null)
+                    .Select(entry =>
+                    {
+                        using (Stream stream = entry.Open())
+                        using (var streamReader = new StreamReader(stream))
+                        {
+                            return streamReader.ReadToEnd();
+                        }
+                    })
+                    .ToList();
+
+                // combine the manifests files
+                IEnumerable<JToken> allExtensions = manifests
+                    .Select(JObject.Parse)
+                    .SelectMany(jObject => jObject["extensions"]);
+
+                // take the top level properties from the AddonPackage project's manifest
+                JObject combinedManifestJObject = JObject.Parse(File.ReadAllText(manifestJson));
+
+                combinedManifestJObject["extensions"] = new JArray(allExtensions);
+                combinedManifestJObject["id"] = ProjectName;
+
+                string combinedManifest = combinedManifestJObject.ToString();
+
+                // creates the combined manifest file
+                ZipArchiveEntry combinedManifestEntry = combinedArchive.CreateEntry(manifestJson);
+
+                using (var stream = combinedManifestEntry.Open())
+                using (var streamWriter = new StreamWriter(stream))
+                {
+                    streamWriter.Write(combinedManifest);
+                }
+
+                foreach (ZipArchive archive in archives)
+                {
+                    archive.Dispose();
+                }
+            }
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <CombineExtensionPackages ProjectName="$(ProjectName)" />
+  </Target>
+
+</Project>

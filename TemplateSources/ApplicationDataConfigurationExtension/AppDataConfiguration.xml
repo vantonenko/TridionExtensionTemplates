@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApplicationDataCategories xmlns="http://www.sdltridion.com/ContentManager/ImportExport/Configuration/2013">
+  <ApplicationDataCategory name="Experience Manager" description="Some description">
+    <Localization language="de" name="Experience Manager" description="Einige Beschreibung" />
+    <Localization language="fr" name="Experience Manager" description="Une description" />
+    <Localization language="es" name="Experience Manager" description="Alguna descripción" />
+    <Localization language="nl" name="Experience Manager" description="Enige beschrijving" />
+    <Localization language="ja" name="Experience Manager" description="いくつかの説明" />
+    <ApplicationId pattern="SiteEdit" tcmUriXPath="//@xlink:href" />
+  </ApplicationDataCategory>
+</ApplicationDataCategories>

@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventSystemExtension", "TemplateSources\EventSystem\EventSystemExtension.csproj", "{FAC47AE7-FCFF-4E01-AA2C-D2CBA0D3AA5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TridionExtensionTemplates", "VSIX\TridionExtensionTemplates.csproj", "{33315C3D-670E-44BC-9D04-B1A134B5EAF6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Template Sources", "Template Sources", "{16C29EC3-11A4-46B7-BFF5-C4F32C77A47A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VSIX Installer", "VSIX Installer", "{7339FD6F-BE8B-43C4-8B3C-C135EEDAD585}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReadMe", "ReadMe", "{7ECC8D86-B3FA-43E3-A9AE-30863A1C48D2}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.md = ReadMe.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationDataConfigurationExtension", "TemplateSources\ApplicationDataConfigurationExtension\ApplicationDataConfigurationExtension.csproj", "{2BE76464-4D29-42C2-8285-F385B5223A82}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddonPackage", "TemplateSources\AddonPackage\AddonPackage.csproj", "{3B21DB75-751D-4CA8-8ED0-3CEF71D9A807}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UIEditorExtension", "TemplateSources\UIEditor\UIEditorExtension.csproj", "{7A689FE0-D916-44F3-B770-FBD3E1BDE2F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FAC47AE7-FCFF-4E01-AA2C-D2CBA0D3AA5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC47AE7-FCFF-4E01-AA2C-D2CBA0D3AA5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33315C3D-670E-44BC-9D04-B1A134B5EAF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33315C3D-670E-44BC-9D04-B1A134B5EAF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33315C3D-670E-44BC-9D04-B1A134B5EAF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33315C3D-670E-44BC-9D04-B1A134B5EAF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BE76464-4D29-42C2-8285-F385B5223A82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BE76464-4D29-42C2-8285-F385B5223A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B21DB75-751D-4CA8-8ED0-3CEF71D9A807}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B21DB75-751D-4CA8-8ED0-3CEF71D9A807}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A689FE0-D916-44F3-B770-FBD3E1BDE2F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A689FE0-D916-44F3-B770-FBD3E1BDE2F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A689FE0-D916-44F3-B770-FBD3E1BDE2F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FAC47AE7-FCFF-4E01-AA2C-D2CBA0D3AA5C} = {16C29EC3-11A4-46B7-BFF5-C4F32C77A47A}
+		{33315C3D-670E-44BC-9D04-B1A134B5EAF6} = {7339FD6F-BE8B-43C4-8B3C-C135EEDAD585}
+		{2BE76464-4D29-42C2-8285-F385B5223A82} = {16C29EC3-11A4-46B7-BFF5-C4F32C77A47A}
+		{3B21DB75-751D-4CA8-8ED0-3CEF71D9A807} = {16C29EC3-11A4-46B7-BFF5-C4F32C77A47A}
+		{7A689FE0-D916-44F3-B770-FBD3E1BDE2F8} = {16C29EC3-11A4-46B7-BFF5-C4F32C77A47A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {396133D5-FA99-4C19-B1C7-2243C88BC1DA}
+	EndGlobalSection
+EndGlobal

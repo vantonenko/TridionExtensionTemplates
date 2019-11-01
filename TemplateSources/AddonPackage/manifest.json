@@ -1,0 +1,10 @@
+{
+  "id": "GLOBAL_UNIQUE_ID_PLACEHOLDER",
+  "name": "<put your combined package display name here>",
+  "description": "<put your combined package description here>",
+  "author": "<put an author here>",
+  "manifestVersion": "1.0",
+  "minVersion": "0.0.0.0",
+  "version": "9.5",
+  "extensions": []
+}
