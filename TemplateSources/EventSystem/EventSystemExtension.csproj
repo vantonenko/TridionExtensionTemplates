@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <Configurations>Debug;Release</Configurations>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
@@ -54,7 +54,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="Tridion.ContentManager, Version=9.5.0.0, Culture=neutral, PublicKeyToken=360aac4d3354074b" />
+    <Reference Include="Tridion.ContentManager" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
