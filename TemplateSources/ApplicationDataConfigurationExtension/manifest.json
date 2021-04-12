@@ -5,7 +5,7 @@
   "author": "<put an author here>",
   "manifestVersion": "1.0",
   "minVersion": "0.0.0.0",
-  "version": "9.5",
+  "version": "9.6",
   "extensions": [
     {
       "name": "EXTENSION_ID_PLACEHOLDER",
