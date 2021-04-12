@@ -22,6 +22,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddonPackage", "TemplateSou
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UIEditorExtension", "TemplateSources\UIEditor\UIEditorExtension.csproj", "{7A689FE0-D916-44F3-B770-FBD3E1BDE2F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResolverExtension", "ResolverExtension\ResolverExtension.csproj", "{6972650E-3F17-473B-9907-22161E7A323C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{7A689FE0-D916-44F3-B770-FBD3E1BDE2F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7A689FE0-D916-44F3-B770-FBD3E1BDE2F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A689FE0-D916-44F3-B770-FBD3E1BDE2F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6972650E-3F17-473B-9907-22161E7A323C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6972650E-3F17-473B-9907-22161E7A323C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6972650E-3F17-473B-9907-22161E7A323C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6972650E-3F17-473B-9907-22161E7A323C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +57,7 @@ Global
 		{2BE76464-4D29-42C2-8285-F385B5223A82} = {16C29EC3-11A4-46B7-BFF5-C4F32C77A47A}
 		{3B21DB75-751D-4CA8-8ED0-3CEF71D9A807} = {16C29EC3-11A4-46B7-BFF5-C4F32C77A47A}
 		{7A689FE0-D916-44F3-B770-FBD3E1BDE2F8} = {16C29EC3-11A4-46B7-BFF5-C4F32C77A47A}
+		{6972650E-3F17-473B-9907-22161E7A323C} = {16C29EC3-11A4-46B7-BFF5-C4F32C77A47A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {396133D5-FA99-4C19-B1C7-2243C88BC1DA}
