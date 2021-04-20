@@ -55,7 +55,9 @@
 
   <ItemGroup>
     <Reference Include="Tridion.ContentManager" />
+    <Reference Include="Tridion.ContentManager.Common" />
     <Reference Include="Tridion.ContentManager.Publishing" />
+    <Reference Include="Tridion.Common" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
