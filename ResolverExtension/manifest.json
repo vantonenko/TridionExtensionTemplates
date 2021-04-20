@@ -11,7 +11,9 @@
       "name": "EXTENSION_ID_PLACEHOLDER",
       "type": "CMResolver",
       "properties": {
-        "assemblyFileSource": "ResolverExtension.dll"
+        "assemblyFileSource": "ResolverExtension.dll",
+        "itemType": "<put your full type you want to serve>",
+        "type": "<put your full type with namespace here>"
       }
     }
   ]
