@@ -1,3 +1,6 @@
+# Note
+The repository has been moved to https://github.com/sdl/TridionAddonTemplates
+
 # Prerequisites:
 Visual Studio 2019
 
